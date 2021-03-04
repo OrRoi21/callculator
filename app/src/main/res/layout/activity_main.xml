@@ -10,11 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="0.6"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/calcView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -34,28 +34,36 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="0" />
+            android:text="0"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/plusButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="+" />
+            android:onClick="getOperator"
+            android:text="+"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/minusButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="-" />
+            android:onClick="getOperator"
+            android:text="-"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/clearButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="C" />
+            android:onClick="clearTextfield"
+            app:icon="@android:drawable/ic_menu_delete"
+            app:iconSize="70dp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +78,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="7" />
+            android:text="7"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button21"
@@ -78,7 +87,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="8" />
+            android:text="8"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button22"
@@ -86,14 +96,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="9" />
+            android:text="9"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button23"
+            android:id="@+id/multipleButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="*" />
+            android:onClick="getOperator"
+            android:text="*"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -108,7 +121,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="4" />
+            android:text="4"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button25"
@@ -116,7 +130,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="5" />
+            android:text="5"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button26"
@@ -124,14 +139,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="6" />
+            android:text="6"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button27"
+            android:id="@+id/divButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="/" />
+            android:onClick="getOperator"
+            android:text="/"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -146,7 +164,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="1" />
+            android:text="1"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button29"
@@ -154,7 +173,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="2" />
+            android:text="2"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button30"
@@ -162,13 +182,16 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="writeNumber"
-            android:text="3" />
+            android:text="3"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button31"
+            android:id="@+id/equalButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="=" />
+            android:onClick="calculate"
+            android:text="="
+            android:textSize="30sp" />
     </LinearLayout>
 </LinearLayout>
