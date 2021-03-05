@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
             textView.append(b.getText());
             num1 = Integer.parseInt(textView.getText().toString());
         }
+        else if(textView.getText() == "Error") {
+
+        }
         else {
             textView.setText("");
             textView.append(b.getText());
@@ -60,14 +63,20 @@ public class MainActivity extends AppCompatActivity {
                 result = num1 * num2;
                 break;
             case '/':
-                result = num1 / num2;
+                if(num2 == 0){
+                    textView.setText((String) "Error");
+                    op = ' ';
+                }else
+                    result = num1 / num2;
                 break;
             default:
+                textView.setText((String) "Error");
                 break;
 
         }
-        String str = Integer.toString(result);
-        textView.setText(str);
-        num1 = result;
+        if(op != ' ') {
+            textView.setText(Integer.toString(result));
+            num1 = result;
+        }
     }
 }
