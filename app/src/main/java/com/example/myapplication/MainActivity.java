@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     int num1, num2;
     char op = ' ';
     Button b;
+    int result = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void writeNumber(View view) {
         b = (Button) view;
-        if(op == ' ') {
+        String value = String.valueOf(result);
+        if(op == ' ' ||
+                textView.getText().toString().equals("Error") ||
+                    textView.getText().toString().equals(value)) {
+            if(textView.getText().toString().equals("Error") ||
+                    textView.getText().toString().equals(value))
+                textView.setText("");
             textView.append(b.getText());
             num1 = Integer.parseInt(textView.getText().toString());
         }
-        else if(textView.getText() == "Error") {
-
-        }
         else {
-            textView.setText("");
             textView.append(b.getText());
             num2 = Integer.parseInt(textView.getText().toString());
         }
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public void getOperator(View view) {
         b = (Button) view;
         op = b.getText().charAt(0);
+        textView.setText("");
     }
 
     public void clearTextfield(View view) {
@@ -50,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calculate(View view) {
-        int result = 0;
 
         switch (op) {
             case '+':
@@ -64,17 +68,16 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case '/':
                 if(num2 == 0){
-                    textView.setText((String) "Error");
-                    op = ' ';
+                    textView.setText((String)"Error");
+                    num1 = 0;
                 }else
                     result = num1 / num2;
                 break;
             default:
-                textView.setText((String) "Error");
                 break;
 
         }
-        if(op != ' ') {
+        if(!textView.getText().toString().equals("Error")) {
             textView.setText(Integer.toString(result));
             num1 = result;
         }

@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="0"
             android:textSize="30sp" />
@@ -42,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="getOperator"
             android:text="+"
             android:textSize="30sp" />
@@ -51,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="getOperator"
             android:text="-"
             android:textSize="30sp" />
@@ -60,8 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="clearTextfield"
-            app:icon="@android:drawable/ic_menu_delete"
             app:iconSize="70dp" />
 
     </LinearLayout>
@@ -77,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="7"
             android:textSize="30sp" />
@@ -86,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="8"
             android:textSize="30sp" />
@@ -95,6 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="9"
             android:textSize="30sp" />
@@ -104,6 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="getOperator"
             android:text="*"
             android:textSize="30sp" />
@@ -120,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="4"
             android:textSize="30sp" />
@@ -129,6 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="5"
             android:textSize="30sp" />
@@ -138,6 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="6"
             android:textSize="30sp" />
@@ -147,6 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="getOperator"
             android:text="/"
             android:textSize="30sp" />
@@ -163,6 +174,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="1"
             android:textSize="30sp" />
@@ -172,6 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="2"
             android:textSize="30sp" />
@@ -181,6 +194,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="writeNumber"
             android:text="3"
             android:textSize="30sp" />
@@ -190,6 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/buttondesign"
             android:onClick="calculate"
             android:text="="
             android:textSize="30sp" />
