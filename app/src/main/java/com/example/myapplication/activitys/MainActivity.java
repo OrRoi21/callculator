@@ -1,19 +1,29 @@
-package com.example.myapplication;
+package com.example.myapplication.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.example.myapplication.R;
+import com.example.myapplication.fragments.ScienceFragment;
+import com.example.myapplication.fragments.SimpleFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
-    int num1, num2;
-    char op = ' ';
-    Button b;
-    int result = 0;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    static TextView textView;
+    static int num1, num2;
+    static char op = ' ';
+    static Button b;
+    static int result = 0;
+    boolean isOn = false;
 
 
     @Override
@@ -23,9 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.calcView);
         textView.setText("");
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        SimpleFragment simpleFragment = new SimpleFragment();
+        fragmentTransaction.add(R.id.simpleCon, simpleFragment).commit();
+
     }
 
-    public void writeNumber(View view) {
+    public static void writeNumber(View view) {
         b = (Button) view;
         String value = String.valueOf(result);
         if(op == ' ' ||
@@ -43,18 +60,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void getOperator(View view) {
+    public static void getOperator(View view) {
         b = (Button) view;
         op = b.getText().charAt(0);
         textView.setText("");
     }
 
-    public void clearTextfield(View view) {
+    public static void clearTextfield(View view) {
         textView.setText("");
         op = ' ';
     }
 
-    public void calculate(View view) {
+    public static void calculate(View view) {
 
         switch (op) {
             case '+':
@@ -81,5 +98,22 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(Integer.toString(result));
             num1 = result;
         }
+    }
+
+    public void loadSetFragment() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        ScienceFragment  scienceFragment = new ScienceFragment();
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.scienceCon);
+        fragmentTransaction.add(R.id.scienceCon, scienceFragment);
+        if(isOn == false) {
+            fragmentTransaction.show(scienceFragment);
+            frameLayout.setVisibility(View.VISIBLE);
+        }
+        else {
+            fragmentTransaction.hide(scienceFragment);
+            frameLayout.setVisibility(View.GONE);
+        }
+        fragmentTransaction.addToBackStack(null).commit();
+        isOn = !isOn;
     }
 }
