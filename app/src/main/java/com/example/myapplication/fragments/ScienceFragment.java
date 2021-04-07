@@ -1,12 +1,18 @@
 package com.example.myapplication.fragments;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.myapplication.R;
 import com.example.myapplication.activitys.MainActivity;
@@ -63,10 +69,47 @@ public class ScienceFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_science, container, false);
+
         view.findViewById(R.id.paiButton).setOnClickListener(MainActivity::writeNumber);
         view.findViewById(R.id.eButton).setOnClickListener(MainActivity::writeNumber);
         view.findViewById(R.id.squareButton).setOnClickListener(MainActivity::getOperator);
         view.findViewById(R.id.rootButton).setOnClickListener(MainActivity::getOperator);
         return view;
+    }
+
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        return super.getLifecycle();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("result", "onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("result", "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("result", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("result", "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("result", "onDestroy");
     }
 }

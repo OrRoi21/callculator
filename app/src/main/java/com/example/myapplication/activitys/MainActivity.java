@@ -4,26 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.media.VolumeShaper;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
+import java.lang.Math;
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.ScienceFragment;
 import com.example.myapplication.fragments.SimpleFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
-    static TextView textView;
-    static int num1, num2;
-    static char op = ' ';
-    static Button b;
-    static int result = 0;
-    boolean isOn = false;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private static TextView textView;
+    private static int num1, num2;
+    private static char op = ' ';
+    private static Button b;
+    private static int result = 0;
+    private boolean isOn = false;
 
 
     @Override
@@ -31,14 +36,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button button = (Button) findViewById(R.id.switch1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isOn = !isOn;
+                loadSetFragment();
+            }
+        });
+
         textView = findViewById(R.id.calcView);
         textView.setText("");
-
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
         SimpleFragment simpleFragment = new SimpleFragment();
-        fragmentTransaction.add(R.id.simpleCon, simpleFragment).commit();
+        fragmentTransaction.add(R.id.simpleCon, simpleFragment);
+        if(getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+            ScienceFragment  scienceFragment = new ScienceFragment();
+            FrameLayout frameLayout = (FrameLayout) findViewById(R.id.scienceCon);
+            fragmentTransaction.add(R.id.scienceCon, scienceFragment);
+            fragmentTransaction.show(scienceFragment);
+            frameLayout.setVisibility(View.VISIBLE);
+            isOn = !isOn;
+        }
+        fragmentTransaction.commit();
 
     }
 
@@ -90,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 }else
                     result = num1 / num2;
                 break;
+            case '^':
+                result = num1 * num1;
+                break;
+            case 'r':
+                result = (int) Math.sqrt(num1);
+                break;
             default:
                 break;
 
@@ -105,15 +133,16 @@ public class MainActivity extends AppCompatActivity {
         ScienceFragment  scienceFragment = new ScienceFragment();
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.scienceCon);
         fragmentTransaction.add(R.id.scienceCon, scienceFragment);
-        if(isOn == false) {
-            fragmentTransaction.show(scienceFragment);
-            frameLayout.setVisibility(View.VISIBLE);
+        if(isOn) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
         else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             fragmentTransaction.hide(scienceFragment);
             frameLayout.setVisibility(View.GONE);
         }
         fragmentTransaction.addToBackStack(null).commit();
-        isOn = !isOn;
     }
+
+
 }
