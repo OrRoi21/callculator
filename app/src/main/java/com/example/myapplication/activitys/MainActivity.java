@@ -3,18 +3,27 @@ package com.example.myapplication.activitys;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.VolumeShaper;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.Math;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.util.Arrays;
+import java.util.List;
+
 import com.example.myapplication.R;
 import com.example.myapplication.fragments.ScienceFragment;
 import com.example.myapplication.fragments.SimpleFragment;
@@ -64,28 +73,62 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private class DoingBackground extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+
+                Socket socket = new Socket("10.100.102.7", 12345);
+
+                DataOutputStream writer = new DataOutputStream(socket.getOutputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                socket.close();
+            }catch(ConnectException e) {
+                System.out.println(e.getMessage());
+            }
+            catch(IOException e) {
+                System.out.println(e.getMessage());
+            }
+            return null;
+        }
+    }
+
     public static void writeNumber(View view) {
         b = (Button) view;
         String value = String.valueOf(result);
-        if(op == ' ' ||
-                textView.getText().toString().equals("Error") ||
-                    textView.getText().toString().equals(value)) {
-            if(textView.getText().toString().equals("Error") ||
-                    textView.getText().toString().equals(value))
-                textView.setText("");
+
+        if(textView.getText().toString().equals("Error") ||
+                textView.getText().toString().equals(value)) {
+            textView.setText("");
+        }
+        if(op == ' ') {
             textView.append(b.getText());
             num1 = Integer.parseInt(textView.getText().toString());
         }
         else {
             textView.append(b.getText());
-            num2 = Integer.parseInt(textView.getText().toString());
         }
+//        if(op == ' ' ||
+//                textView.getText().toString().equals("Error") ||
+//                    textView.getText().toString().equals(value)) {
+//            if(textView.getText().toString().equals("Error") ||
+//                    textView.getText().toString().equals(value))
+//                textView.setText("");
+//            textView.append(b.getText());
+//            num1 = Integer.parseInt(textView.getText().toString());
+//        }
+//        else {
+//            textView.append(b.getText());
+//            num2 = Integer.parseInt(textView.getText().toString());
+//        }
     }
 
     public static void getOperator(View view) {
         b = (Button) view;
         op = b.getText().charAt(0);
-        textView.setText("");
+        textView.append(b.getText());
     }
 
     public static void clearTextfield(View view) {
@@ -94,6 +137,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void calculate(View view) {
+
+        String temp = textView.getText().toString();
+        List<String> list = Arrays.asList(temp.split("\\" + op + ""));
+        String temp2 = list.get(1);
+        Log.d("Num" , temp2);
+        num2 = Integer.parseInt(temp2);
+
 
         switch (op) {
             case '+':
@@ -125,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         if(!textView.getText().toString().equals("Error")) {
             textView.setText(Integer.toString(result));
             num1 = result;
+            op = ' ';
         }
     }
 
