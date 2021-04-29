@@ -23,8 +23,9 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
-
+import com.example.myapplication.dm.Request;
 import com.example.myapplication.R;
+import com.example.myapplication.dm.Request;
 import com.example.myapplication.fragments.ScienceFragment;
 import com.example.myapplication.fragments.SimpleFragment;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static Button b;
     private static int result = 0;
     private boolean isOn = false;
-
+    private Request request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,28 +70,24 @@ public class MainActivity extends AppCompatActivity {
             frameLayout.setVisibility(View.VISIBLE);
             isOn = !isOn;
         }
+        request = new Request(num1, num2, op);
+        new DoingBackground().execute(request);
         fragmentTransaction.commit();
 
     }
 
-    private class DoingBackground extends AsyncTask<String, Void, String> {
+    private class DoingBackground extends AsyncTask<Request, Void, String> {
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected String doInBackground(Request... requests) {
             try {
-
                 Socket socket = new Socket("10.100.102.7", 12345);
-
-                DataOutputStream writer = new DataOutputStream(socket.getOutputStream());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-                socket.close();
             }catch(ConnectException e) {
                 System.out.println(e.getMessage());
-            }
-            catch(IOException e) {
+            } catch(IOException e) {
                 System.out.println(e.getMessage());
             }
+
             return null;
         }
     }
