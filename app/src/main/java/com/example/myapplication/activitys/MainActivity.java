@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(Request... requests) {
             try {
-                Socket socket = new Socket("10.100.102.7", 12345);
+                Socket socket = new Socket("10.0.0.8", 12345);
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 ObjectOutputStream writer = new ObjectOutputStream(socket.getOutputStream());
